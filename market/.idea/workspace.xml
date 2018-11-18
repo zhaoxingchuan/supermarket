@@ -1,7 +1,160 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ffa81a2e-719a-42ae-b9d0-f9ac9c002643" name="Default" comment="" />
+    <list default="true" id="ffa81a2e-719a-42ae-b9d0-f9ac9c002643" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/my.cnf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysqlclient-1.3.13-cp36-cp36m-win32.whl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/amazeui.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/ch.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/check.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/1-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/1-icon1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/1-icon2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/1-icon3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/1-icon4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/1-icon5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/1-icon6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/1-icon7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/2-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/2icon1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/2icon2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/2icon3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/3icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/3icon1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/3icon2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/IMG_3574_03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/add.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/banner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/banner1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/bj.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/bm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/brand.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/candar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/care.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/cart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/city.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/contactqq.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/contacttele.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/dui.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/ewm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/game.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/gift.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/gqhb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/grayxin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/guoqi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/gz1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/gz2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/gz3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/herat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/hotline.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/icon1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/icon2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/icon3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/icon4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/icon5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/icon6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/icon7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/icon8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/infortx.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/j_03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/j_06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/j_11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/jp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/ka.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/lz.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/m_02.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/m_03.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/m_04.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/m_05.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/m_06.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/m_07.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/m_08.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/m_09.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/memtx.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/moneysafty.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/moneytele.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/my.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/order-bot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/order-my.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/order-pic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/order-top.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/order.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/ph.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/pic.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/qd.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/qiandao.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/qqlogin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/redherat.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/redxin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/s1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/s2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/s3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/s4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/s5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/s6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/sao.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/search.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/shop1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/shop2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/shop3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/shop4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/shopcart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/sign-up-bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/sinalog.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/skongjian.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/sqq.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/ssina.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/step.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/sweixin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/sweixinfriend.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/tele.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test21.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/test9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/tit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/tj.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/ts.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/tt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/tx.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/tx1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/update.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/volume.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/wei.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/weichong.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/wl.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/wxlogin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/ye.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/yhq.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/yzm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/zhi.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/amazeui.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/area.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/date.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/iscroll.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/jquery-1.10.2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/jquery.mobile-1.4.3.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/popup.mini.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/time.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/market/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/settings.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -9,23 +162,37 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/market/settings.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/market/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+            <state relative-caret-position="155">
+              <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="manage.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/manage.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/my.cnf" />
+        <option value="$PROJECT_DIR$/market/settings.py" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -36,7 +203,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="485" />
     <option name="y" value="96" />
     <option name="width" value="1009" />
@@ -68,6 +235,12 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\project\supermarket\market\static" />
+      <recent name="C:\project\supermarket\market" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -81,14 +254,15 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="market" type="Python.DjangoServer" factoryName="Django server">
+    <configuration name="market" type="Python.DjangoServer" factoryName="Django server" singleton="true">
       <module name="market" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="market.settings" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\software\virtual\django11\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -119,29 +293,29 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="SciView" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.7173554" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25340393" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info anchor="bottom" id="manage.py@market" weight="0.3289256" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +334,30 @@
           <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/market/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="12" column="40" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my.cnf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/market/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
