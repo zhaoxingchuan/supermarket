@@ -14,3 +14,8 @@ def login(request):
 def forget(request):
     # 忘记密码功能
     return render(request, 'user/forgetpassword.html')
+
+
+def info(request):
+    # 个人资料展示
+    return render(request, 'user/infor.html')
