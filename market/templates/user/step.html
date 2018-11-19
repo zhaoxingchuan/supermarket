@@ -1,0 +1,47 @@
+{% extends 'public/reg-log-forget.html' %}
+{% load static %}
+{% block head_css %}
+<link href="{% static 'css/check.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block title %}
+系统设置
+{% endblock %}
+{% block content %}
+<ul class="safty">
+	    	<li>
+	    		<a href="">
+	    			<img src="{% static 'images/2-icon.png' %}" width="40" />
+	    			<i>接收新消息通知</i>
+	    			 <section class="model-10">
+						  <div class="checkbox">
+						    <input type="checkbox"/>
+						    <label></label>
+						  </div>
+    		         </section>
+	    		</a>
+	    	</li>
+	    	<li>
+	    		<a href="">
+	    			<img src="{% static 'images/2icon1.png' %}" width="40" />
+	    			<i>清空缓存</i>
+	    			<span class="am-icon-angle-right"></span>
+	    			<i style="float: right; padding-right: 10px;">1.89 MB</i>
+	    		</a>
+	    	</li>
+	    	<li>
+	    		<a href="">
+	    			<img src="{% static 'images/2icon2.png' %}" width="40" />
+	    			<i>检查更新</i>
+	    			<span class="am-icon-angle-right"></span>
+	    			<i style="float: right; padding-right: 10px;">已经是最新版</i>
+	    		</a>
+	    	</li><li>
+	    		<a href="{% url 'user:about' %}">
+	    			<img src="{% static 'images/2icon3.png' %}" width="40" />
+	    			<i>关于我们</i>
+	    			<span class="am-icon-angle-right"></span>
+
+	    		</a>
+	    	</li>
+	    </ul>
+{% endblock %}

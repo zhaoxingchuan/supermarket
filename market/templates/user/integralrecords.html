@@ -1,0 +1,32 @@
+{% extends 'public/reg-log-forget.html' %}
+{% load static %}
+{% block head_js %}
+    <script src="{% static 'js/time.js' %}"></script>
+{% endblock %}
+{% block title %}
+    兑换记录
+{% endblock %}
+{% block content %}
+    <ul class="out-list">
+        <li>
+            <img src="{% static 'images/j_03.png' %}" width="30"/>
+            <span>
+	    			<p>兑换“魔兽世界1350分钟”游戏卡</p>
+	    			<p style="color: #a4a4a4; font-size: 1.4rem;">2016-01-07 16:34:20</p>
+	    		</span>
+            <i>-900</i>
+        </li>
+        <li>
+            <img src="{% static 'images/j_03.png' %}" width="30"/>
+            <span>
+	    			<p>兑换“10元”话费充值卡分</p>
+	    			<p style="color: #a4a4a4; font-size: 1.4rem;">2016-01-07 16:34:20</p>
+	    		</span>
+            <i>-600</i>
+        </li>
+    </ul>
+{% endblock %}
+{% block footer_js %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/amazeui.min.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'public/reg-log-forget.html' %}
+{% load static %}
+{% block head_js %}
+<script src="{% static 'js/time.js' %}"></script>
+{% endblock %}
+{% block title %}
+积分
+{% endblock %}
+{% block content %}
+  <div class="record-ye">
+	   	  <p>当前积分</p>
+	   	  <b>10</b>
+	    </div>
+	    <div class="re-chong">
+	      <a href="{% url 'user:exchange' %}"><img src="{% static 'images/gift.png' %}" width="22"/><span>兑换</span></a>
+	    </div>
+	    <ul class="money-out">
+	    	<li class="current"><a href="">获得</a></li>
+	    	<li><a href="{% url 'user:exchange' %}">兑换</a></li>
+	    </ul>
+	    <ul class="out-list">
+	    	<li>
+	    		<img src="{% static 'images/candar.png' %}" width="30" />
+	    		<span>
+	    			<p>签到送积分</p>
+	    			<p style="color: #a4a4a4; font-size: 1.4rem;">2016-01-07 16:34:20</p>
+	    		</span>
+	    		<i>+5</i>
+	    	</li>
+	    	<li>
+	    		<img src="{% static 'images/candar.png' %}" width="30" />
+	    		<span>
+	    			<p>签到送积分</p>
+	    			<p style="color: #a4a4a4; font-size: 1.4rem;">2016-01-07 16:34:20</p>
+	    		</span>
+	    		<i>+5</i>
+	    	</li>
+	    </ul>
+{% endblock %}
+{% block footer_js %}
+
+	    <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/amazeui.min.js' %}"></script>
+{% endblock %}

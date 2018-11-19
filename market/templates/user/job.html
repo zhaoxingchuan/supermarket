@@ -1,0 +1,48 @@
+{% extends 'public/reg-log-forget.html' %}
+{% load static %}
+{% block head_css %}
+<link href="{% static 'css/check.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block header %}
+<header data-am-widget="header" class="am-header am-header-default sq-head ">
+			<div class="am-header-left am-header-nav">
+				<a href="javascript:history.back()" class="">
+					<i class="am-icon-chevron-left"></i>
+				</a>
+			</div>
+			<h1 class="am-header-title">
+  	            <a href="" class="">我要兼职</a>
+            </h1>
+            <div class="am-header-right am-header-nav">
+			    <a href="" class="">
+		        申请记录
+		        </a>
+			</div>
+	    </header>
+{% endblock %}
+{% block content %}
+<body style=" background: #efefef;">
+		<header data-am-widget="header" class="am-header am-header-default sq-head ">
+			<div class="am-header-left am-header-nav">
+				<a href="javascript:history.back()" class="">
+					<i class="am-icon-chevron-left"></i>
+				</a>
+			</div>
+			<h1 class="am-header-title">
+  	            <a href="" class="">我要兼职</a>
+            </h1>
+            <div class="am-header-right am-header-nav">
+			    <a href="application.html" class="">
+		        申请记录
+		        </a>
+			</div>
+	    </header>
+	   <ul class="job">
+	   	 <li><a href="applicationjob.html"><img src="{% static 'images/wl.png' %}" width="45"/><span>物流员</span><i class="am-icon-angle-right"></i></a></li>
+	   	 <li><a href="applicationjob.html"><img src="{% static 'images/ph.png' %}" width="45" /><span>配货员</span><i class="am-icon-angle-right"></i></a></li>
+	   	 <li><a href="applicationjob.html"><img src="{% static 'images/lz.png' %}" width="45" /><span>招募楼长</span><i class="am-icon-angle-right"></i></a></li>
+	   	 <li><a href="applicationjob.html"><img src="{% static 'images/brand.png' %}" width="45" /><span>我要加盟</span><i class="am-icon-angle-right"></i></a></li>
+	   	 <li><a href="applicationjob.html"><img src="{% static 'images/qd.png' %}" width="45" /><span>敬请期待</span><b>更多职位等着你</b><i class="am-icon-angle-right"></i></a></li>
+	   </ul>
+	</body>
+{% endblock %}

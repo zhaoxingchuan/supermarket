@@ -1,0 +1,37 @@
+{% extends "public/reg-log-forget.html" %}
+{% load static %}
+{% block head_js %}
+    <script src="{% static 'js/area.js' %}"></script>
+{% endblock %}
+{% block title %}
+    新增收货地址
+{% endblock %}
+{% block content %}
+    {#    <div style="height: 60px;"></div>#}
+    <ul class="address">
+        <li>
+            <a href="{% url 'user:village' %}"><input type="text" class="add-input" disabled="disabled"
+                                                      placeholder="宿舍区"/>
+                <i class="am-icon-angle-right" style="float: right; margin-top: 5px;"></i></a>
+        </li>
+        <li>
+            <a href="{% url 'user:village' %}"><input type="text" class="add-input" disabled="disabled"
+                                                      placeholder="哪栋楼"/>
+                <i class="am-icon-angle-right" style="float: right; margin-top: 5px;"></i></a>
+        </li>
+        <li><input type="text" class="add-input" placeholder="你在哪"/></li>
+        <li><input type="text" class="add-input" placeholder="收货人"/></li>
+        <li><input type="text" class="add-input" placeholder="13000000000"/></li>
+    </ul>
+    <div class="moren">
+        <label class="am-checkbox am-warning">
+            <input type="checkbox" checked="checked" value="" data-am-ucheck checked>设为默认
+        </label>
+
+    </div>
+    <input type="button" class="login-btn" value="确认提交">
+{% endblock %}
+{% block footer_js %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/amazeui.min.js' %}"></script>
+{% endblock %}

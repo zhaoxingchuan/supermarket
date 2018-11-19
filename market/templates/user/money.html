@@ -1,0 +1,38 @@
+{% extends 'public/reg-log-forget.html' %}
+{% load static %}
+{% block head_css %}
+<link href="{% static 'css/check.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+{% block title %}
+我的钱包
+{% endblock %}
+{% block content %}
+<ul class="safty">
+	    	<li>
+	    		<a href="{% url 'user:record' %}">
+	    			<img src="{% static 'images/3icon.png' %}" width="40" />
+	    			<i style="margin-top: 0.7rem; margin-left: 1rem;">账户余额</i>
+	    			<span class="am-icon-angle-right"></span>
+	    			<i class="infor-tele" style="float: right; margin-top: 0.7rem;">0.00</i>
+	    		</a>
+	    	</li>
+	    	<li>
+	    		<a href="{% url 'user:intergral' %}">
+	    			<img src="{% static 'images/3icon1.png' %}" width="40" />
+	    			<i style="margin-top: 0.7rem;  margin-left: 1rem;">积分</i>
+	    			<span class="am-icon-angle-right"></span>
+                    <i class="infor-tele" style="float: right; margin-top: 0.7rem;">4</i>
+	    		</a>
+	    	</li>
+	    	<li>
+	    		<a href="{% url 'user:red_poket' %}">
+	    			<img src="{% static 'images/3icon2.png' %}" width="40" />
+	    			<i style="margin-top: 0.7rem;  margin-left: 1rem;">红包</i>
+	    			<span class="am-icon-angle-right"></span>
+	    			<i class="infor-tele" style="float: right; margin-top: 0.7rem;">4</i>
+	    		</a>
+	    	</li>
+	    </ul>
+{% endblock %}
+
+

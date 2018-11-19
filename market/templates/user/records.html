@@ -1,0 +1,41 @@
+{% extends 'public/reg-log-forget.html' %}
+{% load static %}
+{% block head_css %}
+    <script src="{% static 'js/time.js' %}"></script>
+    <style>
+        .integral-table li span {
+            width: 33%;
+        }
+    </style>
+{% endblock %}
+{% block title %}
+    账户余额
+{% endblock %}
+{% block content %}
+<div class="record-ye">
+    <p>当前余额</p>
+    <b>￥1.00</b>
+</div>
+<div class="re-chong">
+    <a href=""><img src="{% static 'images/ka.png' %}" width="30"/><span>充值</span></a>
+</div>
+<ul class="money-out">
+    <li class="current"><a href="">收入</a></li>
+    <li><a href="">支出</a></li>
+</ul>
+<ul class="out-list">
+    <li>
+        <img src="{% static 'images/weichong.png' %}" width="30"/>
+        <span>
+	    			<p>微信充值</p>
+	    			<p style="color: #a4a4a4; font-size: 1.4rem;">2016-01-07 16:34:20</p>
+	    		</span>
+        <i>+1.0</i>
+    </li>
+</ul>
+{% endblock %}
+{% block footer_js %}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/amazeui.min.js' %}"></script>
+{% endblock %}
+
