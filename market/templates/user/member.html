@@ -89,7 +89,7 @@
         </li>
         <li>
             <div class="am-gallery-item">
-                <a href="recommend.html" class="">
+                <a href="{% url 'user:recommend' %}" class="">
                     <img src="{% static 'images/m_04.png' %}"/>
                     <p>推荐有奖</p>
                 </a>
@@ -97,7 +97,7 @@
         </li>
         <li>
             <div class="am-gallery-item">
-                <a href="myrecommend.html" class="">
+                <a href="{% url 'user:my_recommend' %}" class="">
                     <img src="{% static 'images/m_05.png' %}"/>
                     <p>我的推荐</p>
                 </a>
@@ -113,7 +113,7 @@
         </li>
         <li>
             <div class="am-gallery-item">
-                <a href="yhq.html" class="">
+                <a href="{% url 'user:red_poket' %}" class="">
                     <img src="{% static 'images/m_02.png' %}"/>
                     <p>我的红包</p>
                 </a>
@@ -121,7 +121,7 @@
         </li>
         <li>
             <div class="am-gallery-item">
-                <a href="message.html" class="">
+                <a href="{% url 'user:message' %}" class="">
                     <img src="{% static 'images/m_07.png' %}"/>
                     <p>我的动态</p>
                 </a>

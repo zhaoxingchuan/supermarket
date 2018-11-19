@@ -32,17 +32,17 @@
   	            <a href="" class="">我要兼职</a>
             </h1>
             <div class="am-header-right am-header-nav">
-			    <a href="application.html" class="">
+			    <a href="{% url 'user:application' %}" class="">
 		        申请记录
 		        </a>
 			</div>
 	    </header>
 	   <ul class="job">
-	   	 <li><a href="applicationjob.html"><img src="{% static 'images/wl.png' %}" width="45"/><span>物流员</span><i class="am-icon-angle-right"></i></a></li>
-	   	 <li><a href="applicationjob.html"><img src="{% static 'images/ph.png' %}" width="45" /><span>配货员</span><i class="am-icon-angle-right"></i></a></li>
-	   	 <li><a href="applicationjob.html"><img src="{% static 'images/lz.png' %}" width="45" /><span>招募楼长</span><i class="am-icon-angle-right"></i></a></li>
-	   	 <li><a href="applicationjob.html"><img src="{% static 'images/brand.png' %}" width="45" /><span>我要加盟</span><i class="am-icon-angle-right"></i></a></li>
-	   	 <li><a href="applicationjob.html"><img src="{% static 'images/qd.png' %}" width="45" /><span>敬请期待</span><b>更多职位等着你</b><i class="am-icon-angle-right"></i></a></li>
+	   	 <li><a href="{% url 'user:application_job' %}"><img src="{% static 'images/wl.png' %}" width="45"/><span>物流员</span><i class="am-icon-angle-right"></i></a></li>
+	   	 <li><a href="{% url 'user:application_job' %}"><img src="{% static 'images/ph.png' %}" width="45" /><span>配货员</span><i class="am-icon-angle-right"></i></a></li>
+	   	 <li><a href="{% url 'user:application_job' %}"><img src="{% static 'images/lz.png' %}" width="45" /><span>招募楼长</span><i class="am-icon-angle-right"></i></a></li>
+	   	 <li><a href="{% url 'user:application_job' %}"><img src="{% static 'images/brand.png' %}" width="45" /><span>我要加盟</span><i class="am-icon-angle-right"></i></a></li>
+	   	 <li><a href="{% url 'user:application_job' %}"><img src="{% static 'images/qd.png' %}" width="45" /><span>敬请期待</span><b>更多职位等着你</b><i class="am-icon-angle-right"></i></a></li>
 	   </ul>
 	</body>
 {% endblock %}

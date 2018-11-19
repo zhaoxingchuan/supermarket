@@ -2,7 +2,7 @@ from django.conf.urls import url
 
 from user.views import register, login, forget, info, address, village, index, gladdress, safty, password, payment, \
     bound_phone, money, record, intergral, intergral_exchange, intergral_records, red_poket, dated, step, about, \
-    collect, collect_edit, job, application
+    collect, collect_edit, job, application, application_job, recommend, my_recommend, message, release, message_detail
 
 urlpatterns = [
     url(r'^reg/$', register, name="register"),  # 注册
@@ -30,4 +30,10 @@ urlpatterns = [
     url(r'^collect/edit$', collect_edit, name="edit"),  # 收藏编辑
     url(r'^job/$', job, name="job"),  # 找兼职
     url(r'^job/application/$', application, name="application"),  # 兼职申请记录
+    url(r'^job/application_job/$', application_job, name="application_job"),  # 兼职申请记录
+    url(r'^recommend/$', recommend, name="recommend"),  # 推荐有奖
+    url(r'^my_recommend/$', my_recommend, name="my_recommend"),  # 我的推荐
+    url(r'^message/$', message, name="message"),  # 我的动态
+    url(r'^message/release/$', release, name="release"),  # 发布动态
+    url(r'^message/message_detail/$', message_detail, name="message_detail"),  # 动态详情
 ]

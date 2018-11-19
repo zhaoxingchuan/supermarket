@@ -1,0 +1,21 @@
+{% extends 'public/reg-log-forget.html' %}
+{% load static %}
+{% block title %}
+   推荐有奖
+{% endblock %}
+{% block content %}
+  <div class="banner"><img src="{% static 'images/tj.png' %}"/></div>
+	    <div class="line"></div>
+	    <div class="line-text" style="width: 30%; margin-top: -4.5rem; color: #000; font-size: 2rem;">奖励规则</div>
+	    <div class="re-con">
+	    	<p>1.分享二维码给好友，如果他是新用户，完成注册并进入个人中 心-“我的红包”，就能看到一套组合红包，下单时可使用红包 抵扣相应的金额；</p>
+            <p>2.该新用户下单支付成功，并且本人确认收货，推荐者立得1元  余额；</p>
+            <p>3.余额在在线超市消费无使用限制，可累积使用；</p>
+            <p>4.最终解释权归本站所有</p>
+	    </div>
+	    <div class="recom-ewm"><img src="{% static 'images/ewm.png' %}"/></div>
+	    <ul class="recom-yq">
+	    	<li><a href="">立即邀请</a></li>
+	    	<li><a href="">短信邀请</a></li>
+	    </ul>
+{% endblock %}

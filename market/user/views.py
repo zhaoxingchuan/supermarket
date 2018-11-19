@@ -118,9 +118,39 @@ def collect_edit(request):
 
 def job(request):
     # 我要兼职
-    return render(request,'user/job.html')
+    return render(request, 'user/job.html')
 
 
 def application(request):
     # 兼职申请记录
     return render(request, 'user/application.html')
+
+
+def application_job(request):
+    # 兼职申请记录
+    return render(request, 'user/applicationjob.html')
+
+
+def recommend(request):
+    # 推荐有奖
+    return render(request, 'user/recommend.html')
+
+
+def my_recommend(request):
+    # 我的推荐
+    return render(request, 'user/myrecommend.html')
+
+
+def message(request):
+    # 我的动态
+    return render(request, 'user/message.html')
+
+
+def release(request):
+    # 发布动态
+    return render(request, 'user/release.html')
+
+
+def message_detail(request):
+    # 动态详情
+    return render(request, 'user/messdetail.html')

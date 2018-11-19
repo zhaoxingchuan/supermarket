@@ -1,0 +1,35 @@
+{% extends 'public/reg-log-forget.html' %}
+{% load static %}
+{% block head_css %}
+    <link href="{% static 'css/check.css' %}" rel="stylesheet" type="text/css"/>
+{% endblock %}
+{% block title %}
+    我的推荐
+{% endblock %}
+{% block content %}
+    <div class="hotline" style="overflow: hidden;">
+        <span style="width: 70%;">被推荐人</span>
+        <span style="width: 30%;">时间</span>
+    </div>
+    <ul class="application" style="margin-top: 0;">
+        <li>
+            <a href="">
+                <img src="{% static 'images/my.png' %}" width="45"/>
+                <span>
+	   	 			<p style="margin-top: 1rem;">薰兜茶</p>
+	   	 		</span>
+                <i style="color: #4c4c4c;">2016-01-05</i>
+            </a>
+        </li>
+        <li>
+            <a href="">
+                <img src="{% static 'images/my.png' %}" width="45"/>
+                <span>
+	   	 			<p style="margin-top: 1rem;">胡语歌颜</p>
+	   	 		</span>
+                <i style="color: #4c4c4c;">2016-01-05</i>
+            </a>
+        </li>
+
+    </ul>
+{% endblock %}
