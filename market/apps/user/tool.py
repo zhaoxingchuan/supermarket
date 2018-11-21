@@ -1,4 +1,5 @@
 import hashlib
+import random
 
 from django.conf import settings
 from django.shortcuts import redirect
@@ -33,3 +34,6 @@ def verify_session(old):
             return old(request, *args, **kwargs)
 
     return check_login
+
+
+

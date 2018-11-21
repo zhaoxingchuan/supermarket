@@ -2,10 +2,12 @@ from django.conf.urls import url
 
 from user.views import register, login, forget, info, address, village, index, gladdress, safty, password, payment, \
     bound_phone, money, record, intergral, intergral_exchange, intergral_records, red_poket, dated, step, about, \
-    collect, collect_edit, job, application, application_job, recommend, my_recommend, message, release, message_detail
+    collect, collect_edit, job, application, application_job, recommend, my_recommend, message, release, message_detail, \
+    send_msg_phone
 
 urlpatterns = [
     url(r'^reg/$', register, name="register"),  # 注册
+    url(r'^sendMsg/$', send_msg_phone, name="sendMsg"),  # 发送短信验证码
     url(r'^log/$', login, name="login"),  # 登陆
     url(r'^forget/$', forget, name="forget"),  # 忘记密码
     url(r'^$', index, name="center"),  # 个人中心首页

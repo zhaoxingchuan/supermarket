@@ -1,3 +1,8 @@
+import random
+import re
+from django_redis import get_redis_connection
+
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 from user.forms import UserRegisterForm, UserLoginForm
@@ -27,6 +32,35 @@ def register(request):
             return render(request, 'user/reg.html', context)
     else:
         return render(request, 'user/reg.html')
+
+
+def send_msg_phone(request):
+    """
+    发送验证码
+    :param request:
+    :return:
+    """
+    if request.method == "POST":
+        # 接收手机号码
+        phone = request.POST.get("phone", "")
+        # 后端验证手机号码格式是否正确
+        # 创建正则对象
+        phone_re = re.compile("^1[3-9]\d{9}$")
+        # 匹配传入的手机号码
+        rs = re.search(phone_re, phone)
+        if rs is None:
+            return JsonResponse({"err": 1, "errmsg": "手机号码格式错误"})
+        # 生成随机码 随机数字组成
+        random_code = "".join([str(random.randint(0, 9)) for _ in range(4)])
+        # 先获取redis连接
+        cnn = get_redis_connection()
+        # 将随机码保存到redis数据库中
+        cnn.set(phone, random_code)
+        print(random_code)
+        return JsonResponse({"err": 0})
+
+    else:
+        return JsonResponse({"err": 2, "errmsg": "请求方式错误"})
 
 
 def login(request):
