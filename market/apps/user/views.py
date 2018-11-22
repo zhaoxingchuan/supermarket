@@ -1,13 +1,15 @@
 import random
 import re
+import uuid
+
 from django_redis import get_redis_connection
 
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
-from user.forms import UserRegisterForm, UserLoginForm
+from user.forms import UserRegisterForm, UserLoginForm, ForgetForm
 from user.models import UserModel
-from user.tool import set_password, set_session, verify_session
+from user.tool import set_password, set_session, verify_session, send_sms
 
 
 def register(request):
@@ -56,7 +58,14 @@ def send_msg_phone(request):
         cnn = get_redis_connection()
         # 将随机码保存到redis数据库中
         cnn.set(phone, random_code)
-        print(random_code)
+        # print(random_code)
+        # 设置验证码过期时间
+        cnn.expire(phone, 120)
+        # 请求阿里云发送短信
+        __business_id = uuid.uuid1()
+        # print(__business_id)
+        params = "{\"code\":\"%s\",\"product\":\"新华超市\"}" % random_code
+        print(send_sms(__business_id, phone, "注册验证", "SMS_2245271", params))
         return JsonResponse({"err": 0})
 
     else:
@@ -87,7 +96,27 @@ def login(request):
 
 def forget(request):
     # 忘记密码功能
-    return render(request, 'user/forgetpassword.html')
+    if request.method == "POST":
+        data = request.POST
+        form = ForgetForm(data)
+        if form.is_valid():
+            data = form.cleaned_data
+            password = data.get("password2")
+            # 调用方法对密码加密
+            password = set_password(password)
+            # 将数据写入数据库
+            UserModel.objects.filter(phone=data.get("phone").update(phone=data.get("phone"), password=password))
+            # 跳转到登陆页面
+            return redirect("user:login")
+        else:
+            context = {
+                "errors": form.errors,
+                "phone": data.get("phone")
+            }
+            return render(request, 'user/forgetpassword.html', context)
+
+    else:
+        return render(request, 'user/forgetpassword.html')
 
 
 @verify_session

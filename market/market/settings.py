@@ -141,3 +141,8 @@ CACHES = {
 # 配置session的存储引擎
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
+
+
+# 阿里短信的配置
+AccessKeyId = "LTAI2qSiJdWP87em"
+AccessKeySecret = "FzORQ587PgGBoOAdmxzCjaxQi8klUi"
