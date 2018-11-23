@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -146,3 +147,9 @@ SESSION_CACHE_ALIAS = "default"
 # 阿里短信的配置
 AccessKeyId = "LTAI2qSiJdWP87em"
 AccessKeySecret = "FzORQ587PgGBoOAdmxzCjaxQi8klUi"
+
+# 设置静态文件的上传目录
+MEDIA_URL = "/static/media/"
+
+# 配置该URL对应的物理目录存储地址
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')

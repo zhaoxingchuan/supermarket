@@ -58,14 +58,14 @@ def send_msg_phone(request):
         cnn = get_redis_connection()
         # 将随机码保存到redis数据库中
         cnn.set(phone, random_code)
-        # print(random_code)
+        print(random_code)
         # 设置验证码过期时间
         cnn.expire(phone, 120)
         # 请求阿里云发送短信
-        __business_id = uuid.uuid1()
-        # print(__business_id)
-        params = "{\"code\":\"%s\",\"product\":\"新华超市\"}" % random_code
-        print(send_sms(__business_id, phone, "注册验证", "SMS_2245271", params))
+        # __business_id = uuid.uuid1()
+        # # print(__business_id)
+        # params = "{\"code\":\"%s\",\"product\":\"新华超市\"}" % random_code
+        # print(send_sms(__business_id, phone, "注册验证", "SMS_2245271", params))
         return JsonResponse({"err": 0})
 
     else:
@@ -105,7 +105,7 @@ def forget(request):
             # 调用方法对密码加密
             password = set_password(password)
             # 将数据写入数据库
-            UserModel.objects.filter(phone=data.get("phone").update(phone=data.get("phone"), password=password))
+            UserModel.objects.filter(phone=data.get("phone")).update(phone=data.get("phone"), password=password)
             # 跳转到登陆页面
             return redirect("user:login")
         else:
@@ -124,7 +124,8 @@ def index(request):
     # 个人中心首页
     if request.method == "GET":
         context = {
-            "phone": request.session.get("phone")
+            "phone": request.session.get("phone"),
+            "head": request.session.get("head"),
         }
         return render(request, 'user/member.html', context)
     else:
@@ -134,7 +135,32 @@ def index(request):
 @verify_session
 def info(request):
     # 个人资料展示
-    return render(request, 'user/infor.html')
+    if request.method == "POST":
+        user_id = request.session.get("id")
+        # 获取当前用户对象
+        user = UserModel.objects.get(pk=user_id)
+        user.nick_name = request.POST.get("nick_name")
+        user.gender = request.POST.get("gender")
+        user.head = request.FILES.get("head")
+        user.birthday = request.POST.get("birthday")
+        user.school = request.POST.get("school")
+        user.address = request.POST.get("address")
+        user.hometown = request.POST.get("hometown")
+        user.phone = request.POST.get("phone")
+        user.save()
+        # 重写session
+        set_session(request, user)
+        return redirect('user:center')
+    else:
+        # 获取用户id
+        user_id = request.session.get("id")
+        # 查询用户信息
+        user = UserModel.objects.get(pk=user_id)
+
+        context = {
+            "user": user
+        }
+        return render(request, 'user/infor.html', context)
 
 
 @verify_session

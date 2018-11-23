@@ -1,5 +1,3 @@
-from encodings.utf_8 import decode
-
 from django import forms
 from django_redis import get_redis_connection
 
@@ -51,13 +49,14 @@ class UserRegisterForm(forms.ModelForm):
             return phone
 
     # 验证验证码
-    def clean_random(self):
+    def clean_random_code(self):
         random_code = self.cleaned_data.get("random_code")
+        phone = self.cleaned_data.get("phone")
         # 先获取redis连接
         cnn = get_redis_connection()
         try:
-            re_random_code = cnn.get('random_code')
-            re_random_code = decode("utf-8")
+            re_random_code = cnn.get(phone)
+            re_random_code = re_random_code.decode("utf-8")
             if random_code != re_random_code:
                 raise forms.ValidationError("验证码错误或者失效")
             else:
@@ -145,4 +144,20 @@ class ForgetForm(forms.ModelForm):
             raise forms.ValidationError("该手机号码没有注册")
         else:
             return phone
+
+        # 验证验证码
+    def clean_random_code(self):
+        random_code = self.cleaned_data.get("random_code")
+        phone = self.cleaned_data.get("phone")
+        # 先获取redis连接
+        cnn = get_redis_connection()
+        try:
+            re_random_code = cnn.get(phone)
+            re_random_code = re_random_code.decode("utf-8")
+            if random_code != re_random_code:
+                raise forms.ValidationError("验证码错误或者失效")
+            else:
+                return random_code
+        except Exception:
+            raise forms.ValidationError("验证码错误或者失效")
 

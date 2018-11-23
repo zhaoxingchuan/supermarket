@@ -24,6 +24,7 @@ def set_session(request, user):
     # 保存session的方法
     request.session["id"] = user.pk
     request.session["phone"] = user.phone
+    request.session["head"] = user.head
 
 
 def verify_session(old):

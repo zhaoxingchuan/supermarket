@@ -36,6 +36,7 @@ class UserModel(BaseModel):
     school = models.CharField(max_length=50, null=True, blank=True, verbose_name="学校")
     hometown = models.CharField(max_length=50, null=True, blank=True, verbose_name="家乡")
     address = models.CharField(max_length=50, null=True, blank=True, verbose_name="收货地址")
+    head = models.ImageField(upload_to="head/%Y%m/%d", default="head/memtx.png", verbose_name="头像")
 
     class Meta:
         db_table = "user"
