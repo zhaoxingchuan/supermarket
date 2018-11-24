@@ -1,0 +1,22 @@
+{% extends 'public/reg-log-forget.html' %}
+{% load static %}
+{% block header %}
+<header data-am-widget="header" class="am-header am-header-default sq-head ">
+			<div class="am-header-left am-header-nav">
+				<a href="javascript:history.back()" class="">
+					<i class="am-icon-chevron-left"></i>
+				</a>
+			</div>
+			<h1 class="am-header-title">
+  	            <a href="" class="">选择城市</a>
+            </h1>
+	    </header>
+{% endblock %}
+{% block content %}
+   <ul class="city-list">
+	    	<li class="curr"><a href="">成都</a></li>
+	    	<li><a href="">绵阳</a></li>
+	    	<li><a href="">广元</a></li>
+	    </ul>
+{% endblock %}
+

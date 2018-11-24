@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'goods.apps.GoodsConfig',
     'order.apps.OrderConfig',
+    'ckeditor',  # 添加ckeditor富文本编辑器
+    'ckeditor_uploader',  # 添加ckeditor富文本编辑器文件上传部件
 ]
 
 MIDDLEWARE = [
@@ -124,9 +126,23 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+# 设置静态文件根目录  上线的时候使用
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# 设置ckeditor的上传目录 这个目录是相对目录，相对与 MEDIA_ROOT
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+# 编辑器样式配置
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
 
 # 添加缓存的配置
 CACHES = {
@@ -142,7 +158,6 @@ CACHES = {
 # 配置session的存储引擎
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
-
 
 # 阿里短信的配置
 AccessKeyId = "LTAI2qSiJdWP87em"

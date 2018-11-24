@@ -1,6 +1,9 @@
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 
 from db.base_model import BaseModel
+
+from market.settings import MEDIA_URL
 
 
 class ShopCategory(BaseModel):
@@ -14,6 +17,7 @@ class ShopCategory(BaseModel):
     """
     name = models.CharField(max_length=50, verbose_name="分类名")
     intro = models.CharField(max_length=255, null=True, blank=True, verbose_name="分类简介")
+    oreder = models.SmallIntegerField(default=0, verbose_name="排序")
 
     class Meta:
         db_table = "ShopCategory"
@@ -32,7 +36,8 @@ class ShopSpu(BaseModel):
     详情
     """
     name = models.CharField(max_length=50, verbose_name="名称")
-    detail = models.CharField(max_length=255, null=True, blank=True, verbose_name="详情")
+    # 导入ckeditor上富文本编辑器自带字段
+    detail = RichTextUploadingField(null=True, blank=True, verbose_name="详情")
 
     class Meta:
         db_table = "ShopSpu"
@@ -153,6 +158,12 @@ class Activity(BaseModel):
     name = models.CharField(max_length=50, verbose_name="活动名称")
     picture = models.ImageField(upload_to="activity/%Y%m/%d", verbose_name="图片地址")
     url = models.URLField(verbose_name="url地址")
+
+    def show_picture(self):
+        return "<img style='width:80px' src='{}{}' />".format(MEDIA_URL, self.picture)
+
+    show_picture.allow_tags = True
+    show_picture.short_description = "LOGO"
 
     class Meta:
         db_table = "activity"
