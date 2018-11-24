@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
 
 from goods.models import LunBoModel, Activity, ActivityZone, ShopSku, ShopCategory
@@ -44,10 +45,46 @@ def tiding(request):
     return render(request, 'goods/tidings.html')
 
 
-def cate(request):
+def cate(request, cate_id, order):
+    # 将cate_id转为int
+    cate_id = int(cate_id)
+    order = int(order)
     # 获取商品分类
-    cates = ShopCategory.objects.filter(isDelete=False).order_by("-oreder")
+    cates = ShopCategory.objects.filter(isDelete=False)
+    # 默认查询第一个商品分类
+    if cate_id == 0:
+        cate = cates.first()
+        cate_id = cate.pk
+    # 查询分类下对应的商品信息
+    goods = ShopSku.objects.filter(isDelete=False, isAdded=True, category_id=cate_id)
+    if order == 0:  # 综合排序
+        goods = goods
+    elif order == 1:  # 销量排序
+        goods = goods.order_by("-sales")
+    elif order == 2:  # 价格升序
+        goods = goods.order_by("price")
+    elif order == 3:  # 价格降序
+        goods = goods.order_by("-price")
+    elif order == 4:  # 最新
+        goods = goods.order_by("-creat_time")
+    else:
+        order = 0
+
+    pag_size = 2  # 默认每页2个商品
+    paginator = Paginator(goods, pag_size)
+    # 得到页码 默认第一页
+    p = request.GET.get("p", 1)
+    try:
+        items = paginator.page(p)
+    except EmptyPage:  # 默认第一页
+        items = paginator.page(1)
+    except PageNotAnInteger:  # 默认最后一页
+        items = paginator.page(paginator.num_pages)
+
     context = {
-        "cates": cates
+        "cates": cates,
+        "goods": items,
+        "cate_id": cate_id,
+        "order": order
     }
     return render(request, 'goods/category.html', context)

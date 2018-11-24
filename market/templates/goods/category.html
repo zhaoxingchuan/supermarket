@@ -12,6 +12,20 @@
             white-space: normal;
             text-overflow: ellipsis;
         }
+
+        {#判断固定排序规则时的背景图片#}
+        .list-price {
+            background: url({% if order == 2 %}
+                {% static 'images/order-top.png' %}
+            {% elif order == 3 %}
+                {% static 'images/order-bot.png' %}
+            {% endif %}
+            ) no-repeat right center;
+            padding-right: 20px;
+            font-style: normal;
+        }
+
+
     </style>
 {% endblock %}
 {% block header %}
@@ -29,46 +43,55 @@
 {% endblock %}
 {% block content %}
     <ul class="list-nav">
-        <li class="current"><a href="">综合</a></li>
-        <li><a href="">销量</a></li>
-        <li><a href=""><i class="list-price">价格</i></li>
-        <li><a href="">新品</a></li>
+        <li {% if order == 0 %} class="current"{% endif %}><a href="{% url 'goods:cate' cate_id 0 %}">综合</a></li>
+        <li{% if order == 1 %} class="current"{% endif %}><a href="{% url 'goods:cate' cate_id 1 %}">销量</a></li>
+        <li {% if order == 2 %} class="current" {% elif order == 3 %} class="current"{% endif %}><a
+                href="{% url 'goods:cate' cate_id 2 %}"><i
+                class="list-price">价格</i></a></li>
+        <li {% if order == 4 %} class="current"{% endif %}><a href="{% url 'goods:cate' cate_id 4 %}">新品</a></li>
     </ul>
     <div class="content-list">
         <div class="list-left">
             {% for cate in cates %}
-            <li ><a href="">{{ cate.name }}</a></li>
+                <li {% if cate_id == cate.pk %}
+                    class="current"
+                {% endif %}><a href="{% url 'goods:cate' cate.pk order %}">{{ cate.name }}</a></li>
             {% endfor %}
-
-
-
         </div>
+
         <div class="list-right">
             <ul class="list-pro">
-              {% for goods in cate.shopsku_set.all %}
-                <li>
-                    <a href="detail.html"><img src=" images/test10.png" class="list-pic"/></a>
-                    <div class="shop-list-mid" style="width: 65%;">
-                        <div class="tit"><a href="detail.html">法国加力果12个装 进口新鲜水果 嘎啦苹果 包邮</a></div>
-                        <div class="am-gallery-desc">￥52</div>
-                        <p>销量：5件</p>
-                    </div>
-                    <div class="list-cart">
-                        <div class="d-stock ">
-                            <a class="decrease">-</a>
-                            <input id="num" readonly="" class="text_box" name="" type="text" value="0">
-                            <a class="increase">+</a>
+                {% for g in goods %}
+                    <li>
+                        <a href="{% url 'goods:detail' g.pk %}"><img src=" {{ MEDIA_URL }}{{ g.url }}"
+                                                                     class="list-pic"/></a>
+                        <div class="shop-list-mid" style="width: 65%;">
+                            <div class="tit"><a
+                                    href="{% url 'goods:detail' g.pk %}">{{ g.spu.name }}&emsp;{{ g.name }}</a></div>
+                            <div class="am-gallery-desc">￥{{ g.price }}</div>
+                            <p>销量：{{ g.sales }}{{ g.unit }}</p>
                         </div>
-                    </div>
-                    <!--<a href="" class="list-cart"><img src="images/cart.png" width="30"/></a>-->
-                </li>
-              {% endfor %}
-
-
-
+                        <div class="list-cart">
+                            <div class="d-stock ">
+                                <a class="decrease">-</a>
+                                <input id="num" readonly="" class="text_box" name="" type="text" value="0">
+                                <a class="increase">+</a>
+                            </div>
+                        </div>
+                        <!--<a href="" class="list-cart"><img src="images/cart.png" width="30"/></a>-->
+                    </li>
+                {% empty %}
+                    <li class="am-gallery-desc">小超正在上新中,敬请期待</li>
+                {% endfor %}
+                {% if goods.has_previous %}
+                    <a href="?p={{ goods.previous_page_number }}" class="am-btn">上一页</a>
+                {% elif goods.has_next %}
+                    <a href="?p={{ goods.next_page_number }}" class="am-btn">下一页</a>
+                {% endif %}
             </ul>
         </div>
     </div>
+
 
     <!--底部-->
     <div style="height: 55px;"></div>
@@ -86,6 +109,16 @@
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/amazeui.min.js' %}"></script>
     <script>
+        //参数order转变
+        $(function () {
+            if ("{{ order }}" == 2) {
+                $(".list-price").parent("a").attr("href", "{% url 'goods:cate' cate_id 3 %}")
+            }
+            else if ("{{ order }}" == 3) {
+                $(".list-price").parent("a").attr("href", "{% url 'goods:cate' cate_id 2 %}")
+            }
+        });
+
         //购物数量加减
         $(function () {
             $('.increase').click(function () {
