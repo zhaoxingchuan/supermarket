@@ -1,3 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+# 购物车首页
+def index(request):
+    return render(request, 'cart/shopcart.html')

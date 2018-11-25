@@ -19,6 +19,8 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^ckeditor/', include("ckeditor_uploader.urls")),  # 上传部件自动调用的上传地址
+    url(r'^search/', include('haystack.urls')),  # 全文搜索框架
     url(r'^user/', include("apps.user.urls", namespace="user")),  # 用户模块
     url(r'^goods/', include("apps.goods.urls", namespace="goods")),  # 商品模块
+    url(r'^cart/', include("apps.cart.urls", namespace="cart")),  # 购物车模块
 ]

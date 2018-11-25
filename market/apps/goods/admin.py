@@ -55,8 +55,8 @@ class ShopSkuAdmin(admin.ModelAdmin):
 # 轮播
 @admin.register(LunBoModel)
 class LunBoModelAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "shop_sku", "picture", "order"]
-    list_display_links = ["id", "name", "shop_sku", "picture", "order"]
+    list_display = ["id", "name", "shop_sku", "show_logo", "order"]
+    list_display_links = ["id", "name", "shop_sku", "order"]
     list_per_page = 10
     list_filter = ["name"]
     search_fields = ["name"]
@@ -65,7 +65,7 @@ class LunBoModelAdmin(admin.ModelAdmin):
 # 活动
 @admin.register(Activity)
 class ActivityAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "show_picture"]
+    list_display = ["id", "name", "show_picture"]  # 显示图片的方法名
     list_display_links = ["id", "name"]
     list_per_page = 10
     list_filter = ["name"]

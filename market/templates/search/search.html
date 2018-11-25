@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if query %}
+    <ul class="list-pro" style="margin-top: 20px">
+        {% for result in page %}
+            <li>
+                <a href="{% url 'goods:detail' result.object.pk %}"><img
+                        src="{{ MEDIA_URL }}{{ result.object.url }}" class="list-pic1"/></a>
+                <div class="shop-list-mid" style="width: 65%;">
+                    <div class="tit">
+                        <a href="{% url 'goods:detail' result.object.pk %}">
+                            {{ result.object.spu.name }}{{ result.object.name }}
+                        </a>
+                    </div>
+                    <div class="am-gallery-desc">￥{{ result.object.price }}</div>
+                    <p>销量：{{ result.object.sales }}{{ result.object.unit }}</p>
+                </div>
+            </li>
+        {% empty %}
+            <li>没有找到您搜索的产品！</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</body>
+</html>

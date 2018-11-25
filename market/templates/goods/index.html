@@ -34,6 +34,10 @@
             {% endfor %}
         </ul>
     </div>
+    <form action="/search/" method="get">
+        <input type="text" name="q" value="" class="cate-input" placeholder="请输入您要的搜索的产品关键词"/>
+        <input type="submit" class="cate-btn" value=""/>
+    </form>
     <!--导航-->
     <ul class="sq-nav">
         <li>
@@ -126,7 +130,8 @@
                         <a href="{% url 'goods:detail' goods.shop_sku.pk %}" class="">
                             <a href="{% url 'goods:detail' goods.shop_sku.pk %}"><img
                                     src="{{ MEDIA_URL }}{{ goods.shop_sku.url }}"/></a>
-                            <h3 class="am-gallery-title">{{ goods.shop_sku.spu.name }}&emsp;{{ goods.shop_sku.name }}</h3>
+                            <h3 class="am-gallery-title">
+                                {{ goods.shop_sku.spu.name }}&emsp;{{ goods.shop_sku.name }}</h3>
                             <div class="am-gallery-desc">￥{{ goods.shop_sku.price }}</div>
                         </a>
                     </div>

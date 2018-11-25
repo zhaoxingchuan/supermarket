@@ -37,12 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user.apps.UserConfig',
-    'cart.apps.CartConfig',
-    'goods.apps.GoodsConfig',
-    'order.apps.OrderConfig',
+    'user.apps.UserConfig',  # 用户模块
+    'cart.apps.CartConfig',  # 购物车模块
+    'goods.apps.GoodsConfig',  # 商品模块
+    'order.apps.OrderConfig',  # 订单模块
     'ckeditor',  # 添加ckeditor富文本编辑器
     'ckeditor_uploader',  # 添加ckeditor富文本编辑器文件上传部件
+    'haystack',  # 全文检索框架
 ]
 
 MIDDLEWARE = [
@@ -168,3 +169,17 @@ MEDIA_URL = "/static/media/"
 
 # 配置该URL对应的物理目录存储地址
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+
+# 全文检索框架的配置
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        # 配置搜索引擎
+        # 'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        # 中文分词 使用jieba的whoosh引擎
+        'ENGINE': 'haystack.backends.whoosh_cn_backend.WhooshEngine',
+        # 配置索引文件目录
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+# 当添加、修改、删除数据时，自动生成索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

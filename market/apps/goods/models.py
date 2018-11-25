@@ -137,6 +137,12 @@ class LunBoModel(BaseModel):
     picture = models.ImageField(upload_to="lunbo/%Y%m/%d", verbose_name="图片")
     order = models.SmallIntegerField(verbose_name="排序", default=0)
 
+    def show_logo(self):
+        return '<img style="width:300px" src="{}{}" >'.format(MEDIA_URL, self.picture)
+
+    show_logo.allow_tags = True  # 不允许转义
+    show_logo.short_description = "LOGO"  # 自定义属性名称
+
     class Meta:
         db_table = "lunbo"
         verbose_name = "轮播图管理"
@@ -159,11 +165,12 @@ class Activity(BaseModel):
     picture = models.ImageField(upload_to="activity/%Y%m/%d", verbose_name="图片地址")
     url = models.URLField(verbose_name="url地址")
 
+    # 定义显示图片的方法
     def show_picture(self):
         return "<img style='width:80px' src='{}{}' />".format(MEDIA_URL, self.picture)
 
-    show_picture.allow_tags = True
-    show_picture.short_description = "LOGO"
+    show_picture.allow_tags = True  # 不允许转义
+    show_picture.short_description = "LOGO"  # 自定义属性名称
 
     class Meta:
         db_table = "activity"

@@ -103,6 +103,7 @@
            <p><b>￥217.80</b></p>
            <p class="js-car">购物满50元免运费</p>
      </div>-->
+
     </div>
 {% endblock %}
 {% block footer_js %}
@@ -131,7 +132,7 @@
                 }
                 self.siblings('input').val(current_num);
                 update_item(self.siblings('input').data('item-id'));
-            })
+            });
             $('.decrease').click(function () {
                 var self = $(this);
                 var current_num = parseInt(self.siblings('input').val());
