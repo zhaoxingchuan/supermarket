@@ -81,7 +81,12 @@ def login(request):
             # 如果表单数据通过合法验证，保存session并且跳转到个人中心
             user = form.cleaned_data.get('user')
             set_session(request, user)
-            return redirect("user:center")
+            # 判断是否有参数next
+            next = request.GET.get("next")
+            if next:
+                return redirect(next)
+            else:
+                return redirect("user:center")
         else:
             context = {
                 "errors": form.errors,

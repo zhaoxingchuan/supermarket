@@ -2,3 +2,4 @@
 {{object.name}}
 {{object.intro}}
 {{object.spu.detail}}
+{{object.spu.name}}

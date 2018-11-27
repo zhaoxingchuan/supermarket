@@ -1,31 +1,104 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% if query %}
-    <ul class="list-pro" style="margin-top: 20px">
-        {% for result in page %}
-            <li>
-                <a href="{% url 'goods:detail' result.object.pk %}"><img
-                        src="{{ MEDIA_URL }}{{ result.object.url }}" class="list-pic1"/></a>
-                <div class="shop-list-mid" style="width: 65%;">
-                    <div class="tit">
-                        <a href="{% url 'goods:detail' result.object.pk %}">
-                            {{ result.object.spu.name }}{{ result.object.name }}
-                        </a>
-                    </div>
-                    <div class="am-gallery-desc">￥{{ result.object.price }}</div>
-                    <p>销量：{{ result.object.sales }}{{ result.object.unit }}</p>
-                </div>
-            </li>
-        {% empty %}
-            <li>没有找到您搜索的产品！</li>
-        {% endfor %}
-    </ul>
-{% endif %}
+{% extends 'public/reg-log-forget.html' %}
+{% load static %}
+{% load highlight %}
+{% block head_css %}
+    <style>
+        .shop-list-mid .tit a {
+            color: #909090;
+            font-size: 1.4rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            white-space: normal;
+            text-overflow: ellipsis;
+        }
 
-</body>
-</html>
+        {#判断固定排序规则时的背景图片#}
+        .list-price {
+            background: url({% if order == 2 %}
+                {% static 'images/order-top.png' %}
+            {% elif order == 3 %}
+                {% static 'images/order-bot.png' %}
+            {% endif %}
+            ) no-repeat right center;
+            padding-right: 20px;
+            font-style: normal;
+        }
+
+        .my_class_name {
+            color: red;
+        }
+
+
+    </style>
+{% endblock %}
+{% block header %}
+    <header data-am-widget="header" class="am-header am-header-default sq-head ">
+        <div class="am-header-left am-header-nav">
+            <a href="javascript:history.back()" class="">
+                <i class="am-icon-chevron-left"></i>
+            </a>
+        </div>
+        <div class="cate-search">
+            <form action="/search/" method="get">
+                <input type="text" name="q" value="{{ query }}" class="cate-input" placeholder="请输入您要的搜索的产品关键词"/>
+                <input type="submit" class="cate-btn" value=""/>
+            </form>
+        </div>
+    </header>
+{% endblock %}
+{% block content %}
+
+    <div class="content-list">
+
+        <ul class="list-pro">
+            {% for result in page %}
+                <li>
+                    <a href="{% url 'goods:detail' result.object.pk %}"><img
+                            src=" {{ MEDIA_URL }}{{ result.object.url }}"
+                            class="list-pic"/></a>
+                    <div class="shop-list-mid" style="width: 65%;">
+                        <div class="tit"><a
+                                href="{% url 'goods:detail' result.object.pk %}">
+                            {% highlight result.object.spu.name with query css_class "my_class_name" html_tag "span" %}&emsp;
+                            {% highlight result.object.name with query css_class "my_class_name" html_tag "span" %}</a>
+                        </div>
+                        <div class="am-gallery-desc">￥{{ result.object.price }}</div>
+                        <p>销量：{{ result.object.sales }}{{ result.object.unit }}</p>
+                    </div>
+                    <div class="list-cart">
+                        <div class="d-stock ">
+                            <a class="decrease">-</a>
+                            <input id="num" readonly="" class="text_box" name="" type="text" value="0">
+                            <a class="increase">+</a>
+                        </div>
+                    </div>
+                    <!--<a href="" class="list-cart"><img src="images/cart.png" width="30"/></a>-->
+                </li>
+            {% empty %}
+                <li class="am-gallery-desc">小超正在上新中,敬请期待</li>
+            {% endfor %}
+            <li>
+                {% if page.has_previous %}
+                    <a href="?q={{ query }}&page={{ page.previous_page_number }}" class="am-btn">上一页</a>
+                {% endif %}
+                {% if page.has_next %}
+                    <a href="?q={{ query }}&page={{ page.next_page_number }}" class="am-btn">下一页</a>
+                {% endif %}
+            </li>
+        </ul>
+
+    </div>
+
+{% endblock %}
+{% block footer_js %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/amazeui.min.js' %}"></script>
+{% endblock %}
+
+
+
+
+
+

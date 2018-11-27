@@ -1,7 +1,9 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect
+from django_redis import get_redis_connection
 
 from goods.models import LunBoModel, Activity, ActivityZone, ShopSku, ShopCategory
+from user.tool import verify_session
 
 
 def index(request):
@@ -45,6 +47,7 @@ def tiding(request):
     return render(request, 'goods/tidings.html')
 
 
+@verify_session
 def cate(request, cate_id, order):
     # 将cate_id转为int
     cate_id = int(cate_id)
@@ -80,11 +83,22 @@ def cate(request, cate_id, order):
         items = paginator.page(1)
     except PageNotAnInteger:  # 默认最后一页
         items = paginator.page(paginator.num_pages)
+    # 得到购物车的数量
+    r = get_redis_connection("default")
+    user_id = request.session.get("id")
+    # 创建hash键
+    cart_key = "cart_key_{}".format(user_id)
+    cart_counts = r.hvals(cart_key)
+    count = 0
+    for v in cart_counts:
+        v = int(v)
+        count += v
 
     context = {
         "cates": cates,
         "goods": items,
         "cate_id": cate_id,
-        "order": order
+        "order": order,
+        "count": count
     }
     return render(request, 'goods/category.html', context)

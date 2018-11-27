@@ -36,8 +36,10 @@
             </a>
         </div>
         <div class="cate-search">
-            <input type="text" class="cate-input" placeholder="请输入您要的搜索的产品关键词"/>
-            <input type="button" class="cate-btn"/>
+            <form action="/search/" method="get">
+                <input type="text" name="q" value="" class="cate-input" placeholder="请输入您要的搜索的产品关键词"/>
+                <input type="submit" class="cate-btn" value=""/>
+            </form>
         </div>
     </header>
 {% endblock %}
@@ -74,7 +76,8 @@
                         <div class="list-cart">
                             <div class="d-stock ">
                                 <a class="decrease">-</a>
-                                <input id="num" readonly="" class="text_box" name="" type="text" value="0">
+                                <input id="num" readonly="" sku_id="{{ g.pk }}" class="text_box" name="" type="text"
+                                       value="0">
                                 <a class="increase">+</a>
                             </div>
                         </div>
@@ -96,7 +99,11 @@
     <!--底部-->
     <div style="height: 55px;"></div>
     <div class="fix-bot">
-        <div class="fix-bot-cart"><i>8</i></div>
+        <a href="{% url 'cart:index' %}">
+            <div class="fix-bot-cart">
+                <i id="cart_count">{{ count }}</i>
+            </div>
+        </a>
         <a href="tureorder.html" class="list-js">去结算</a>
         <a href="tureorder.html" class="list-jsk">一键快购</a>
         <!--<div class="js-text">
@@ -124,28 +131,90 @@
         $(function () {
             $('.increase').click(function () {
                 var self = $(this);
-                var current_num = parseInt(self.siblings('input').val());
-                current_num += 1;
-                if (current_num > 0) {
-                    self.siblings(".decrease").fadeIn();
-                    self.siblings(".text_box").fadeIn();
-                }
-                self.siblings('input').val(current_num);
-                update_item(self.siblings('input').data('item-id'));
+                var cart_count = parseInt(self.siblings('input').val());
+                cart_count += 1;
+                var count = 1;
+                var sku_id = self.siblings('input').attr("sku_id");
+                //console.debug(sku_id, count)
+                $.ajax({
+                    "type": "POST",
+                    "url": "{% url 'cart:addCart' %}",
+                    "data": {
+                        "sku_id": sku_id,
+                        "count": count,
+                        "csrfmiddlewaretoken": "{{ csrf_token }}",
+                    },
+                    "dataType": "json",
+                    "success": function (data) {
+                        // console.debug(data);
+                        if (data.code == 0) {
+                            if (cart_count > 0) {
+                                self.siblings(".decrease").fadeIn();
+                                self.siblings(".text_box").fadeIn();
+                            }
+                            self.siblings('input').val(cart_count);
+                            //更新购物车中的数量
+                            $("#cart_count").text(data.cart_count);
+
+                        } else if (data.code == 1) {
+                            {#没有登陆#}
+                            var flag = confirm("没有登陆，是否跳转到登陆页面？")
+                            if (flag) {
+                                location.href = "{% url 'user:login' %}?next={% url 'goods:cate' cate_id 0 %}"
+                            }
+                        }
+                    }
+                })
+
+
             });
             $('.decrease').click(function () {
                 var self = $(this);
-                var current_num = parseInt(self.siblings('input').val());
-                if (current_num > 0) {
-                    current_num -= 1;
-                    if (current_num < 1) {
-                        self.fadeOut();
-                        self.siblings(".text_box").fadeOut();
-                    }
-                    self.siblings('input').val(current_num);
-                    update_item(self.siblings('input').data('item-id'));
+                var cart_count = parseInt(self.siblings('input').val());
+                if (cart_count > 0) {
+                    var count = -1;
+                    var sku_id = self.siblings('input').attr("sku_id");
+                    //console.debug(sku_id, count)
+                    $.ajax({
+                        "type": "POST",
+                        "url": "{% url 'cart:addCart' %}",
+                        "data": {
+                            "sku_id": sku_id,
+                            "count": count,
+                            "csrfmiddlewaretoken": "{{ csrf_token }}",
+                        },
+                        "dataType": "json",
+                        "success": function (data) {
+                            // console.debug(data);
+                            if (data.code == 0) {
+                                cart_count -= 1;
+                                if (cart_count < 1) {
+                                    self.fadeOut();
+                                    self.siblings(".text_box").fadeOut();
+                                }
+                                self.siblings('input').val(cart_count);
+                                if (cart_count > 0) {
+                                    self.siblings(".decrease").fadeIn();
+                                    self.siblings(".text_box").fadeIn();
+                                }
+                                self.siblings('input').val(cart_count);
+                                //更新购物车中的数量
+                                $("#cart_count").text(data.cart_count);
+
+                            } else if (data.code == 1) {
+                                {#没有登陆#}
+                                var flag = confirm("没有登陆，是否跳转到登陆页面？")
+                                if (flag) {
+                                    location.href = "{% url 'user:login' %}?next={% url 'goods:cate' cate_id 0 %}"
+                                }
+                            }
+                        }
+                    })
+
+
                 }
-            })
+            });
+
         })
 
     </script>

@@ -37,13 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'haystack',  # 全文检索框架
     'user.apps.UserConfig',  # 用户模块
     'cart.apps.CartConfig',  # 购物车模块
     'goods.apps.GoodsConfig',  # 商品模块
     'order.apps.OrderConfig',  # 订单模块
     'ckeditor',  # 添加ckeditor富文本编辑器
     'ckeditor_uploader',  # 添加ckeditor富文本编辑器文件上传部件
-    'haystack',  # 全文检索框架
+
 ]
 
 MIDDLEWARE = [
@@ -183,3 +184,5 @@ HAYSTACK_CONNECTIONS = {
 }
 # 当添加、修改、删除数据时，自动生成索引
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+# 搜索结果每页显示条数
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 2
