@@ -23,36 +23,39 @@
         <p>亲、您的购物车还是空空的哦，快去装满它!</p>
         <a href="{% url 'goods:index' %}" class="goshopping">前去逛逛</a>
     </div>
-    <ul class="shopcart-list">
-        {% for sku_good in sku_goods %}
-            <li>
-                <label class="am-checkbox am-warning">
-                    <input type="checkbox" checked="checked" value="" data-am-ucheck checked>
-                </label>
-                <a href="{% url 'goods:detail' sku_good.pk %}"><img src="{{ MEDIA_URL }}{{ sku_good.url }}"
-                                                                    class="shop-pic"/></a>
-                <div class="shop-list-mid">
-                    <div class="tit"><a
-                            href="{% url 'goods:detail' sku_good.pk %}">{{ sku_good.spu.name }}&emsp;{{ sku_good.name }}</a>
+    <form id="order" action="{% url 'order:confirm' %}" method="get">
+        <ul class="shopcart-list">
+            {% for sku_good in sku_goods %}
+                <li>
+                    <label class="am-checkbox am-warning">
+                        <input name="sku_id" type="checkbox" checked="checked" value="{{ sku_good.pk }}" data-am-ucheck
+                               checked>
+                    </label>
+                    <a href="{% url 'goods:detail' sku_good.pk %}"><img src="{{ MEDIA_URL }}{{ sku_good.url }}"
+                                                                        class="shop-pic"/></a>
+                    <div class="shop-list-mid">
+                        <div class="tit"><a
+                                href="{% url 'goods:detail' sku_good.pk %}">{{ sku_good.spu.name }}&emsp;{{ sku_good.name }}</a>
+                        </div>
+                        <b class="shop-list-price">￥<span class="price">{{ sku_good.price }}</span> </b>
                     </div>
-                    <b class="shop-list-price">￥<span class="price">{{ sku_good.price }}</span> </b>
-                </div>
-                <div class="list-cart1">
-                    <div class="d-stock">
-                        <a class="decrease">-</a>
-                        <input id="num" sku_id="{{ sku_good.pk }}" readonly="" class="text_box" name="" type="text"
-                               value="{{ sku_good.count }}">
-                        <a class="increase">+</a>
+                    <div class="list-cart1">
+                        <div class="d-stock">
+                            <a class="decrease">-</a>
+                            <input id="num" sku_id="{{ sku_good.pk }}" readonly="" class="text_box" name="" type="text"
+                                   value="{{ sku_good.count }}">
+                            <a class="increase">+</a>
+                        </div>
                     </div>
-                </div>
 
-            </li>
-        {% endfor %}
-
+                </li>
+            {% endfor %}
 
 
-        <div style="height: 10px; background: #eee;"></div>
-    </ul>
+
+            <div style="height: 10px; background: #eee;"></div>
+        </ul>
+    </form>
 
     <div class="shop-fix">
 
@@ -60,7 +63,7 @@
             <input id="check_all" type="checkbox" checked="checked" value="" data-am-ucheck checked>
         </label>
         <a class="del">全选</a>
-        <a href="tureorder.html" class="js-btn">去结算</a>
+        <a href="javascript:;" class="js-btn">去结算</a>
         <div class="js-text">
             <P>合计：<b>￥<span id="total_price">00.00</span></b></P>
             <p class="js-car">免费配送</p>
@@ -128,7 +131,7 @@
                                 //如果所有li都被删除
                                 self.parents("li").remove();
                                 totalPrice();
-                                if ($(".shopcart-list").find("li").length == 0){
+                                if ($(".shopcart-list").find("li").length == 0) {
                                     //显示空购物车
                                     $(".cart_log").show()
 
@@ -137,44 +140,55 @@
                         }
                     }
                 })
-        });
-
-        //处理全选
-        $("#check_all").on("change", function () {
-            //console.debug(111)
-            var status = $(this).prop("checked");
-            $(".shopcart-list").find(":checkbox").prop("checked", status)
-            totalPrice()
-
-        });
-        //处理商品列表的复选框
-        $(".shopcart-list").find(":checkbox").on("change", function () {
-            totalPrice();
-            //判断复选框的数量和被选中的数量  如果相等说明全选，不等就不全选
-            if ($(".shopcart-list").find(":checkbox").length == $(".shopcart-list").find(":checked").length) {
-                $("#check_all").prop("checked", true);
-            } else {
-                $("#check_all").prop("checked", false);
-            }
-        });
-
-        //计算购物车所有商品的总价格
-        function totalPrice() {
-            //获取所有的复选框
-            var checkboxes = $(".shopcart-list").find(":checked");
-            total_price = 0
-            $.each(checkboxes, function (i, e) {
-                var li = $(e).parents("li")
-                var price = li.find(".price").text();
-                var count = li.find("#num").val();
-                //console.debug(price, count)
-                total_price += price * count
             });
-            //改变总价格 两位小数
-            $("#total_price").text(total_price.toFixed(2))
-        }
 
-        totalPrice()
+            //处理全选
+            $("#check_all").on("change", function () {
+                //console.debug(111)
+                var status = $(this).prop("checked");
+                $(".shopcart-list").find(":checkbox").prop("checked", status)
+                totalPrice()
+
+            });
+            //处理商品列表的复选框
+            $(".shopcart-list").find(":checkbox").on("change", function () {
+                totalPrice();
+                //判断复选框的数量和被选中的数量  如果相等说明全选，不等就不全选
+                if ($(".shopcart-list").find(":checkbox").length == $(".shopcart-list").find(":checked").length) {
+                    $("#check_all").prop("checked", true);
+                } else {
+                    $("#check_all").prop("checked", false);
+                }
+            });
+
+            //计算购物车所有商品的总价格
+            function totalPrice() {
+                //获取所有的复选框
+                var checkboxes = $(".shopcart-list").find(":checked");
+                total_price = 0;
+                $.each(checkboxes, function (i, e) {
+                    var li = $(e).parents("li")
+                    var price = li.find(".price").text();
+                    var count = li.find("#num").val();
+                    //console.debug(price, count)
+                    total_price += price * count
+                });
+                //改变总价格 两位小数
+                $("#total_price").text(total_price.toFixed(2))
+            }
+
+            totalPrice();
+
+
+            //提交表单
+            $(".js-btn").on("click", function () {
+                if ($(".shopcart-list").find(":checked").length > 0) {
+                    $("#order").submit()
+                } else {
+                    alert("请先选择结算商品！")
+                }
+
+            })
         });
     </script>
     <script src="{% static 'js/jquery.min.js' %}"></script>

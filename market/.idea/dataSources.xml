@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="db" uuid="9d4fd5e6-f08c-4716-b7d2-826d21f66afa">
+    <data-source source="LOCAL" name="db [6]" uuid="23d1b950-39ab-4b87-a523-8eb560cf75eb">
       <driver-ref>4bc5c60f-02a1-4148-9d91-1970477a154d</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
@@ -26,7 +26,7 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="db [2]" uuid="44c306eb-e68b-4d13-9c6b-f140c394c2c9">
+    <data-source source="LOCAL" name="db [7]" uuid="889c3c87-0659-40f6-8f86-eff5c5c0d9b7">
       <driver-ref>4bc5c60f-02a1-4148-9d91-1970477a154d</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
@@ -51,7 +51,7 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="db [3]" uuid="27b8b7b7-b128-4003-b9df-f89219542ae5">
+    <data-source source="LOCAL" name="db" uuid="f40e532d-7ef2-4c41-b182-2bffb3a88130">
       <driver-ref>4bc5c60f-02a1-4148-9d91-1970477a154d</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
@@ -76,7 +76,7 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="db [4]" uuid="492387bd-7c8f-40fc-b98b-720391b02592">
+    <data-source source="LOCAL" name="db [2]" uuid="44ff6a8b-e01c-45c5-8d55-8cc1c96254a9">
       <driver-ref>4bc5c60f-02a1-4148-9d91-1970477a154d</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
@@ -101,7 +101,32 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="db [5]" uuid="af2ef4bf-5220-4545-8efa-2ad100704239">
+    <data-source source="LOCAL" name="db [3]" uuid="a669dd7e-b401-474c-9496-6a761b0986de">
+      <driver-ref>4bc5c60f-02a1-4148-9d91-1970477a154d</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>SQLite</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\project\supermarket\market\db.sqlite3</jdbc-url>
+      <driver-properties>
+        <property name="enable_load_extension" value="true" />
+      </driver-properties>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.16.1/sqlite-jdbc-3.16.1.jar</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.16.1/xerial-sqlite-license.txt</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.25.1/license.txt</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.25.1/sqlite-jdbc-3.25.1.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+    <data-source source="LOCAL" name="db [4]" uuid="0a21e4de-8207-48de-9b17-cb648f742270">
       <driver-ref>4bc5c60f-02a1-4148-9d91-1970477a154d</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>

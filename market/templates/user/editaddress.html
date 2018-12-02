@@ -93,34 +93,34 @@
 
 {% endblock %}
 {% block title %}
-    新增收货地址
+    编辑收货地址
 {% endblock %}
 {% block content %}
     {#    <div style="height: 60px;"></div>#}
     <form action="" method="post">
         {% csrf_token %}
+        <input type="hidden" name="id" value="{{ address.id }}">
         <ul class="address">
             <li>
-                <span id="city" style="padding-left:5px; width: 20rem">地址</span>
-                <input type="hidden" name="harea" id="harea" value="">
-                <input type="hidden" name="hproper" id="hproper" value="">
-                <input type="hidden" name="hcity" id="hcity" value="">
+                <span id="city" style="padding-left:5px; width: 20rem">{{ address.hcity }}{{ address.hproper }}{{ address.harea }}</span>
+                <input type="hidden" name="harea" id="harea" value="{{ address.harea }}">
+                <input type="hidden" name="hproper" id="hproper" value="{{ address.hproper }}">
+                <input type="hidden" name="hcity" id="hcity" value="{{ address.hcity }}">
             </li>
-            <p class="am-text-danger">{{ form.errors.harea.0 }}</p>
-            <li><input type="text" name="detail" class="add-input" placeholder="详细地址"/></li>
+             <p class="am-text-danger">{{ form.errors.harea.0 }}</p>
+            <li><input type="text" name="detail" class="add-input" value="{{ address.detail }}" placeholder="详细地址"/></li>
             <p class="am-text-danger">{{ form.errors.detail.0 }}</p>
-            <li><input type="text" name="username" class="add-input" placeholder="收货人姓名"/></li>
-            <p class="am-text-danger">{{ form.errors.username.0 }}</p>
-            <li><input type="text" name="phone" class="add-input" placeholder="收货人手机号码"/></li>
+            <li><input type="text" name="username" class="add-input" value="{{ address.username }}" placeholder="收货人姓名"/></li>
+            <p class="am-text-danger">{{ form.errors.username.0}}</p>
+            <li><input type="text" name="phone" class="add-input" value="{{ address.phone }}" placeholder="收货人手机号码"/></li>
             <p class="am-text-danger">{{ form.errors.phone.0 }}</p>
         </ul>
         <div class="moren">
             <label class="am-checkbox am-warning">
-                <input type="checkbox" name="isDefault" checked="checked" data-am-ucheck checked>设为默认
+                <input type="checkbox" name="isDefault" {% if address.isDefault %}checked="checked"{% endif %} data-am-ucheck >设为默认
             </label>
 
         </div>
-        <p class="am-text-danger">{{ form.non_field_errors.0 }}</p>
         <input type="submit" class="login-btn" value="确认提交">
     </form>
 {% endblock %}

@@ -4,11 +4,11 @@ import uuid
 
 from django_redis import get_redis_connection
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 
-from user.forms import UserRegisterForm, UserLoginForm, ForgetForm
-from user.models import UserModel
+from user.forms import UserRegisterForm, UserLoginForm, ForgetForm, AddAddressForm, EditAddressForm
+from user.models import UserModel, UserAddress
 from user.tool import set_password, set_session, verify_session, send_sms
 
 
@@ -170,20 +170,114 @@ def info(request):
 
 @verify_session
 def address(request):
-    # 地址管理
-    return render(request, 'user/address.html')
+    # 新增收货地址
+    if request.method == "POST":
+        data = request.POST.dict()
+        # 获取当前用户的id
+        user_id = request.session.get("id")
+        data["user_id"] = user_id
+        form = AddAddressForm(data)
+        if form.is_valid():
+            """
+            # 将清洗后的数据保存到数据库中
+            cleaned_data = form.cleaned_data
+            # 把用户id添加到清洗的数据中
+            cleaned_data["user_id"] = user_id
+            UserAddress.objects.create(**cleaned_data)
+            """
+            # 用的是modelform，可以使用以下方法保存
+            form.instance.user_id = user_id
+            form.save()
+            return redirect('user:gladdress')
+        else:
+            context = {
+                "form": form
+            }
+            return render(request, 'user/address.html', context)
+
+
+    else:
+
+        return render(request, 'user/address.html')
 
 
 @verify_session
-def village(request):
-    # 校区选择
-    return render(request, "user/village.html")
+def edit_address(request, id):
+    # 编辑地址
+    if request.method == "POST":
+        data = request.POST.dict()
+        user_id = request.session.get("id")
+        data["user_id"] = user_id
+        form = EditAddressForm(data)
+        if form.is_valid():
+            cleaned_data = form.cleaned_data
+            id = data.get("id")
+            # 修改数据
+            UserAddress.objects.filter(pk=id, user_id=user_id, isDelete=False).update(**cleaned_data)
+            return redirect("user:gladdress")
+        else:
+            context = {
+                "form": form,
+                "address": data,
+            }
+            return render(request, 'user/editaddress.html', context)
+    else:
+        user_id = request.session.get("id")
+        # 查询当前地址对象
+        try:
+            address = UserAddress.objects.get(user_id=user_id, pk=id, isDelete=False)
+        except UserAddress.DoesNotExist:
+            return redirect('user:gladdress')
+        context = {
+            "address": address
+        }
+        return render(request, "user/editaddress.html", context)
 
 
 @verify_session
 def gladdress(request):
-    # 收货地址
-    return render(request, 'user/gladdress.html')
+    # 获取当前用户id
+    user_id = request.session.get("id")
+    # 根据用户id查询收货地址
+    addresses = UserAddress.objects.filter(user_id=user_id, isDelete=False).order_by("-isDefault")
+    context = {
+        "addresses": addresses
+    }
+    # 管理收货地址
+    return render(request, 'user/gladdress.html', context)
+
+
+def del_address(request):
+    """
+    删除地址，id为当前地址的id
+    """
+    if request.method == "POST":
+        user_id = request.session.get("id")
+        id = request.POST.get("id")
+        if user_id is None:
+            return JsonResponse({"code": 1, "errmsg": "没有登陆"})
+        # 判断登陆之后就可以删除
+        UserAddress.objects.filter(user_id=user_id, pk=id, isDelete=False).update(isDelete=True)
+        return JsonResponse({"code": 0})
+    else:
+        return JsonResponse({"code": 2, "errmsg": "请求方式错误"})
+
+
+def default_address(request):
+    """
+    设置默认地址，id为当前地址的id
+    """
+    if request.method == "POST":
+        user_id = request.session.get("id")
+        id = request.POST.get("id")
+        if user_id is None:
+            return JsonResponse({"code": 1, "errmsg": "没有登陆"})
+        # 判断登陆之后就可以设置默认地址,先把所有的改为非默认，再把当前修改为默认
+        UserAddress.objects.filter(user_id=user_id, isDelete=False).update(isDefault=False)
+        UserAddress.objects.filter(user_id=user_id, pk=id, isDelete=False).update(isDefault=True)
+        return JsonResponse({"code": 0})
+    else:
+        return JsonResponse({"code": 2, "errmsg": "请求方式错误"})
 
 
 @verify_session

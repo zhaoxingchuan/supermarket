@@ -1,79 +1,103 @@
 {% extends 'public/reg-log-forget.html' %}
 {% load static %}
 {% block header %}
-<header data-am-widget="header" class="am-header am-header-default sq-head ">
-			<div class="am-header-left am-header-nav">
-				<a href="javascript:history.back()" class="">
-					<i class="am-icon-chevron-left"></i>
-				</a>
-			</div>
-			<h1 class="am-header-title">
-  	            <a href="" class="">管理收货地址</a>
-            </h1>
-            <div class="am-header-right am-header-nav">
-				<a href="{% url 'user:address' %}" class="">
-					<i class="am-icon-plus"></i>
-				</a>
-			</div>
-	    </header>
+    <header data-am-widget="header" class="am-header am-header-default sq-head ">
+        <div class="am-header-left am-header-nav">
+            <a href="javascript:history.back()" class="">
+                <i class="am-icon-chevron-left"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title">
+            <a href="" class="">管理收货地址</a>
+        </h1>
+        <div class="am-header-right am-header-nav">
+            <a href="{% url 'user:address' %}" class="">
+                <i class="am-icon-plus"></i>
+            </a>
+        </div>
+    </header>
 {% endblock %}
 
 {% block content %}
+    <ul class="address-list">
+        {% for address in addresses %}
+            <li data_id="{{ address.id }}" {% if address.isDefault == True %}
+                class="curr"
+            {% endif %}>
+                <p>收货人：{{ address.username }}&nbsp;&nbsp;{{ address.phone }}</p>
+                <p class="order-add1">
+                    收货地址：{{ address.hcity }}{{ address.hproper }}{{ address.harea }}{{ address.detail }}</p>
+                <hr/>
+                <div class="address-cz">
+                    <label class="default am-radio am-warning">
+                        <input type="radio" name="radio3" value="" data-am-ucheck {% if address.isDefault == True %}
+                               checked
+                        {% endif %}> 设为默认
+                    </label>
+                    <a href="{% url 'user:edit_address' address.pk %}"><img src="{% static 'images/bj.png' %}"
+                                                                            width="18"/>&nbsp;编辑</a>
+                    <a class="del" href="javascript:;">删除</a>
+                </div>
+            </li>
 
-<ul class="address-list">
-	    	<li class="curr">
-	    		<p>收货人：徐女士&nbsp;&nbsp;182********</p>
-	    		<p class="order-add1">收货地址：江西省南昌市 青云谱区解放西路258号江西省南昌市 青云谱区解放西路258号</p>
-	    	    <hr />
-	    	    <div class="address-cz">
-	    	    	<label class="am-radio am-warning">
-                       <input type="radio" name="radio3" value="" data-am-ucheck checked> 设为默认
-                    </label>
-                    <a href=""><img src="{% static 'images/bj.png' %}" width="18" />&nbsp;编辑</a>
-                    <a href="">删除</a>
-	    	    </div>
-	    	</li>
-	    	<li>
-	    		<p>收货人：徐女士&nbsp;&nbsp;182********</p>
-	    		<p class="order-add1">收货地址：江西省南昌市 青云谱区解放西路258号江西省南昌市 青云谱区解放西路258号</p>
-	    	    <hr />
-	    	    <div class="address-cz">
-	    	    	<label class="am-radio am-warning">
-                       <input type="radio" name="radio3" value="" data-am-ucheck > 设为默认
-                    </label>
-                    <a href=""><img src="{% static 'images/bj.png' %}" width="18" />&nbsp;编辑</a>
-                    <a href="">删除</a>
-	    	    </div>
-	    	</li>
-	    	<li>
-	    		<p>收货人：徐女士&nbsp;&nbsp;182********</p>
-	    		<p class="order-add1">收货地址：江西省南昌市 青云谱区解放西路258号江西省南昌市 青云谱区解放西路258号</p>
-	    	    <hr />
-	    	    <div class="address-cz">
-	    	    	<label class="am-radio am-warning">
-                       <input type="radio" name="radio3" value="" data-am-ucheck > 设为默认
-                    </label>
-                    <a href=""><img src="{% static 'images/bj.png' %}" width="18" />&nbsp;编辑</a>
-                    <a href="">删除</a>
-	    	    </div>
-	    	</li>
-	    	<li>
-	    		<p>收货人：徐女士&nbsp;&nbsp;182********</p>
-	    		<p class="order-add1">收货地址：江西省南昌市 青云谱区解放西路258号江西省南昌市 青云谱区解放西路258号</p>
-	    	    <hr />
-	    	    <div class="address-cz">
-	    	    	<label class="am-radio am-warning">
-                       <input type="radio" name="radio3" value="" data-am-ucheck > 设为默认
-                    </label>
-                    <a href=""><img src="{% static 'images/bj.png' %}" width="18" />&nbsp;编辑</a>
-                    <a href="">删除</a>
-	    	    </div>
-	    	</li>
-	    </ul>
+        {% endfor %}
+    </ul>
 {% endblock %}
 
 {% block footer_js %}
-<script src="{% static 'js/jquery.min.js' %}"></script>
-<script src="{% static 'js/amazeui.min.js' %}"></script>
-{% endblock %}
+    <script>
+        $(function () {
+            $(".del").on("click", function () {
+                //绑定删除事件 点击当前的就删除当前的li
+                var li = $(this).parents("li");
+                var id = li.attr("data_id")
+                $.ajax({
+                    type: "post",
+                    url: "{% url 'user:del_address' %}",
+                    data: {
+                        "id": id,
+                        "csrfmiddlewaretoken": "{{ csrf_token }}"
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.code == 0) {
+                            //删除当前li
+                            li.remove()
+                        } else {
+                            alert("删除失败！")
+                        }
+                    }
+                })
+            });
 
+            $(".default").on("click", function () {
+                //绑定事件
+                var li = $(this).parents("li");
+                var id = li.attr("data_id");
+                $.ajax({
+                    type: "post",
+                    url: "{% url 'user:default_address' %}",
+                    data: {
+                        "id": id,
+                        "csrfmiddlewaretoken": "{{ csrf_token }}"
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.code == 0) {
+                            //修改当前li的状态
+                            $(".curr").removeClass();
+                            li.addClass("curr")
+                        } else {
+                            alert("设置默认地址失败！")
+                        }
+                    }
+
+
+                })
+
+            })
+        })
+    </script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/amazeui.min.js' %}"></script>
+{% endblock %}

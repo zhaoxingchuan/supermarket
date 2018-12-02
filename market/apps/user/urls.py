@@ -1,9 +1,9 @@
 from django.conf.urls import url
 
-from user.views import register, login, forget, info, address, village, index, gladdress, safty, password, payment, \
+from user.views import register, login, forget, info, address, index, gladdress, safty, password, payment, \
     bound_phone, money, record, intergral, intergral_exchange, intergral_records, red_poket, dated, step, about, \
     collect, collect_edit, job, application, application_job, recommend, my_recommend, message, release, message_detail, \
-    send_msg_phone
+    send_msg_phone, edit_address, del_address, default_address
 
 urlpatterns = [
     url(r'^reg/$', register, name="register"),  # 注册
@@ -15,7 +15,9 @@ urlpatterns = [
     url(r'^step/$', step, name="step"),  # 设置
     url(r'^about/$', about, name="about"),  # 关于我们
     url(r'^gladdress/address/$', address, name="address"),  # 新增地址
-    url(r'^gladdress/address/village/$', village, name="village"),  # 校区选择
+    url(r'^gladdress/edit/(?P<id>\d+)/$', edit_address, name="edit_address"),  # 编辑地址
+    url(r'^address/del/$', del_address, name="del_address"),  # 删除地址
+    url(r'^address/default/$', default_address, name="default_address"),  # 设置默认地址
     url(r'^gladdress/$', gladdress, name="gladdress"),  # 管理收货地址
     url(r'^safty/$', safty, name="safty"),  # 安全管理
     url(r'^safty/password/$', password, name="password"),  # 安全管理

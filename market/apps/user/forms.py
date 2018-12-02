@@ -1,7 +1,7 @@
 from django import forms
 from django_redis import get_redis_connection
 
-from user.models import UserModel
+from user.models import UserModel, UserAddress
 from user.tool import set_password
 
 
@@ -136,6 +136,7 @@ class ForgetForm(forms.ModelForm):
             return pwd2
 
         # 验证手机号是否已经注册
+
     def clean_phone(self):
         phone = self.cleaned_data.get("phone")
         # 判断手机号是否存在
@@ -146,6 +147,7 @@ class ForgetForm(forms.ModelForm):
             return phone
 
         # 验证验证码
+
     def clean_random_code(self):
         random_code = self.cleaned_data.get("random_code")
         phone = self.cleaned_data.get("phone")
@@ -161,3 +163,68 @@ class ForgetForm(forms.ModelForm):
         except Exception:
             raise forms.ValidationError("验证码错误或者失效")
 
+
+class AddAddressForm(forms.ModelForm):
+    class Meta:
+        model = UserAddress
+        fields = ["hcity", "hproper", "harea", "detail", "username", "phone", "isDefault"]
+        error_messages = {
+            "harea": {
+                "required": "地址必填"
+            },
+            "detail": {
+                "required": "详细地址必填"
+            },
+            "username": {
+                "required": "收货人姓名必填"
+            },
+            "phone": {
+                "required": "收货人电话必填"
+            }
+        }
+
+    def clean(self):
+        """
+        用户的收获地址不能超过6条
+        :return:
+        """
+        # 获取用户id
+        user_id = self.data.get("user_id")
+        # 根据用户id查询他的收货地址条数
+        counts = UserAddress.objects.filter(user_id=user_id, isDelete=False).count()
+        if counts >= 6:
+            raise forms.ValidationError("收货地址不能超过6条")
+        # 默认地址只能有一个，判断当前isDefult是否为True 如果为真，将其他改为false
+        isDefault = self.cleaned_data.get("isDefault")
+        if isDefault:
+            UserAddress.objects.filter(user_id=user_id, isDelete=False).update(isDefault=False)
+        return self.cleaned_data
+
+
+class EditAddressForm(forms.ModelForm):
+    class Meta:
+        model = UserAddress
+        fields = ["hcity", "hproper", "harea", "detail", "username", "phone", "isDefault"]
+        error_messages = {
+            "harea": {
+                "required": "地址必填"
+            },
+            "detail": {
+                "required": "详细地址必填"
+            },
+            "username": {
+                "required": "收货人姓名必填"
+            },
+            "phone": {
+                "required": "收货人电话必填"
+            }
+        }
+
+    def clean(self):
+        # 获取用户id
+        user_id = self.data.get("user_id")
+        # 默认地址只能有一个，判断当前isDefult是否为True 如果为真，将其他改为false
+        isDefault = self.cleaned_data.get("isDefault")
+        if isDefault:
+            UserAddress.objects.filter(user_id=user_id, isDelete=False).update(isDefault=False)
+        return self.cleaned_data
